@@ -12,5 +12,6 @@ function laziRequireLoad(path){
 }
 
 gulp.task('jshint', laziRequireLoad('./tasks/jshint', {path: ['./**/*js', '!node_modules/**/*']}));
+gulp.task('user:test', laziRequireLoad('./tasks/userTest', {}));
 gulp.task('test', ['jshint']);
 gulp.task('run', laziRequireLoad('./tasks/nodemon'));
