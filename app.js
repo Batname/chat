@@ -1,18 +1,13 @@
 
-const express = require('express');
+const app = require('./modules/application');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const config = require('config');
-const router = express.Router();
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const defaultLogger = require('./modules/logger').default;
-
-let homeRouters = require('./routes/index');
-
-let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));
@@ -30,7 +25,8 @@ middlewares.forEach((middleware) => {
   app.use(require('./middlewares/' + middleware)());
 });
 
-app.use('/', homeRouters);
+// load handlers
+app.requireHandler(__dirname, ['home', 'users', 'errorHandler']);
 
 app.use((req, res) => res.status(404).send('Page not found'));
 
