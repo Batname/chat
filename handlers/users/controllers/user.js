@@ -1,4 +1,5 @@
 const User = require('../models/user').User;
+const ObjectID = require('mongodb').ObjectID;
 
 exports.list = (req, res, next) => {
   User.find({}, (err, users) => {
@@ -8,10 +9,11 @@ exports.list = (req, res, next) => {
 };
 
 exports.user = (req, res, next) => {
+  let id;
   try {
-    let id = new ObjectID(req.params.id);
+    id = new ObjectID(req.params.id);
   } catch (e) {
-    return next(404);
+    return next(e);
   }
 
   User.findById(id, (err, user) => {

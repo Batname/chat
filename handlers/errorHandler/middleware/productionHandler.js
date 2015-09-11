@@ -1,5 +1,8 @@
 const HttpError = require('../libs/httpError').HttpError;
 
+const templatePath = require.resolve('../templates/error.jade');
+const templateFn = require('jade').compileFile(templatePath);
+
 module.exports = (err, req, res, next) => {
   if (typeof err == 'number') { // next(404);
     err = new HttpError(err);
@@ -12,13 +15,13 @@ module.exports = (err, req, res, next) => {
         res.render("error", {error: err});
       }
   } else {
-    console.error(err);
     err = new HttpError(500);
       res.status(err.status);
       if (res.req.headers['x-requested-with'] == 'XMLHttpRequest') {
         res.json(err);
       } else {
-        res.render("error", {error: err});
+        res.write(templateFn({error: err}));
+        res.end();
       }
   }
 };

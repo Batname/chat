@@ -1,8 +1,8 @@
 const CLS = require('continuation-local-storage');
 const ns = CLS.createNamespace('app');
 
-module.exports = () => {
-	return (req, res, next) => {
+exports.init = app => {
+  app.use((req, res, next) => {
 		let context = ns.createContext();
 	  ns.enter(context);
 	  ns.bindEmitter(req);
@@ -13,5 +13,6 @@ module.exports = () => {
 	  } finally {
 	    ns.exit(context);
 	  }
-	};
+	});
 };
+

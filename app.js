@@ -19,11 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// middlewares loaders
-const middlewares = fs.readdirSync(path.join(__dirname, '/middlewares')).sort();
-middlewares.forEach((middleware) => {
-  app.use(require('./middlewares/' + middleware)());
-});
+// handlers middlewares loaders
+app.requireHandler(__dirname, ['clsContext', 'requestUrlLogger']);
 
 // load handlers
 app.requireHandler(__dirname, ['home', 'users', 'errorHandler']);
