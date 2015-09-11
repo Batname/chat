@@ -9,12 +9,14 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const defaultLogger = require('./modules/logger').default;
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'jade');
 
 // Middleware
 app.use(logger('dev'));
+app.requireHandler(__dirname, ['session',]);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

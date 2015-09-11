@@ -4,9 +4,9 @@ const _ = require('lodash');
 
 let app = express();
 
-app.requireHandler = function(root_dir, paths) {
+app.requireHandler = function(rootDir, paths) {
 
-  const folder = path.join(root_dir, '/handlers');
+  const folder = path.join(rootDir, '/handlers');
 
   if(_.isArray(paths) && !_.isEmpty(paths)){
     paths.forEach( path => {
