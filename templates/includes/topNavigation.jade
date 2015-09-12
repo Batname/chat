@@ -1,0 +1,11 @@
+nav.navbar.navbar-default(role='navigation')
+  ul.nav.navbar-nav
+    li
+      a(href='/') Home
+  ul.nav.navbar-nav.navbar-right
+    if user
+      li
+        a(href='', onclick="$('<form method=POST action=/logout>').submit();return false") Enter
+    else
+      li
+        a(href='/login') Escape

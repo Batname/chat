@@ -1,8 +1,11 @@
 doctype html
 html
   head
+    meta(charset="UTF-8")
     block title
       title Default title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    include ./includes/topNavigation.jade
     block content
+    block js

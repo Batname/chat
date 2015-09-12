@@ -1,5 +1,6 @@
 
 const app = require('./modules/application');
+const express = require('express');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -20,12 +21,13 @@ app.requireHandler(__dirname, ['session',]);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static('public'))
 
 // handlers middlewares loaders
 app.requireHandler(__dirname, ['clsContext', 'requestUrlLogger']);
 
 // load handlers
-app.requireHandler(__dirname, ['home', 'users', 'errorHandler']);
+app.requireHandler(__dirname, ['home', 'auth', 'users', 'errorHandler']);
 
 app.use((req, res) => res.status(404).send('Page not found'));
 

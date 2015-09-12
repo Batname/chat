@@ -11,6 +11,10 @@ function laziRequireLoad(path){
 	};
 }
 
+// Webpack build
+const webpackConfig = {watch: true};
+gulp.task('webpack', laziRequireLoad('./tasks/webpack', webpackConfig));
+
 gulp.task('jshint', laziRequireLoad('./tasks/jshint', {path: ['./**/*js', '!node_modules/**/*']}));
 gulp.task('user:test', laziRequireLoad('./tasks/userTest', {}));
 gulp.task('test', ['jshint']);

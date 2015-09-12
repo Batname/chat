@@ -1,4 +1,4 @@
-extends layout
+extends ../../../templates/layout.jade
 
 block title
   title= title
@@ -7,3 +7,6 @@ block content
   h1= body
   h1= numberOfVisits
   include _message
+
+block js
+  script(src='/js/home.js')
