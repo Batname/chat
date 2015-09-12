@@ -58,6 +58,12 @@ const config = {
     extensions: ['', '.webpack.js', '.web.js', '.js']
   },
 
+  externals: {
+    // require("jquery") is external and available
+    // on the global var $
+    "$": "$"
+  },
+
   module: {
     preLoaders: [
       {
@@ -118,6 +124,7 @@ const config = {
 const clientConfig = merge({}, config, {
   entry: {
     'login': getEntry('auth'),
+    'chat': getEntry('chat')
   },
   output: {
     path: output,

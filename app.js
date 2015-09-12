@@ -17,7 +17,8 @@ app.set('view engine', 'jade');
 
 // Middleware
 app.use(logger('dev'));
-app.requireHandler(__dirname, ['session',]);
+app.requireHandler(__dirname, ['session']);
+app.requireHandler(__dirname, ['loadUser']);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -27,7 +28,7 @@ app.use(express.static('public'))
 app.requireHandler(__dirname, ['clsContext', 'requestUrlLogger']);
 
 // load handlers
-app.requireHandler(__dirname, ['home', 'auth', 'users', 'errorHandler']);
+app.requireHandler(__dirname, ['home', 'auth', 'users', 'chat', 'errorHandler']);
 
 app.use((req, res) => res.status(404).send('Page not found'));
 

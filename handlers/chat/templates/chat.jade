@@ -1,0 +1,16 @@
+var title = 'Chat page'
+extends ../../../templates/layout.jade
+
+block title
+  title= title
+
+block content
+  p.lead Здесь будет чат
+
+  p Добро пожаловать
+    span &nbsp;
+    span= user.username
+
+block js
+  script(src='/js/chat.js')
+

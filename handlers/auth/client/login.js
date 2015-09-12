@@ -9,14 +9,15 @@ export let loginInit = () => {
     var form = $(this);
 
     $('.error', form).html('');
-    $(':submit', form).button('loading');
+    let button = $(':submit', form)[0];
+    button.innerHTML = button.dataset.loadingText;
 
     $.ajax({
       url: '/login',
       method: 'POST',
       data: form.serialize(),
       complete: function() {
-        $(':submit', form).button('reset');
+        button.innerHTML = 'Enter';
       },
       statusCode: {
         200: function() {
